@@ -8,11 +8,13 @@ class Application
     if req.path.match(/test/) 
       return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
     elsif req.path.match(/movies/)
-      input = JSON.parse(req.body.read)
-      director_id = req.path.split('/directors/').last.split("/movies").last
-      director = Director.find_by(id: director_id)
-      movie = director.movies.create(name: input["name"])
-      return [200, { 'Content-Type' => 'application/json' }, [movie.to_json ]]
+      if req.env["REQUEST_METHOD"] =="POST"
+        input = JSON.parse(req.body.read)
+        director_id = req.path.split('/directors/').last.split("/movies").last
+        director = Director.find_by(id: director_id)
+        movie = director.movies.create(name: input["name"])
+        return [200, { 'Content-Type' => 'application/json' }, [movie.to_json ]]
+      end
     elsif req.path.match(/directors/)
       if req.env["REQUEST_METHOD"] == "POST"
         input = JSON.parse(req.body.read)
