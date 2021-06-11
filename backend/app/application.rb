@@ -14,6 +14,12 @@ class Application
         director = Director.find_by(id: director_id)
         movie = director.movies.create(name: input["name"])
         return [200, { 'Content-Type' => 'application/json' }, [movie.to_json ]]
+      elsif req.env["REQUEST_METHOD"] =="DELETE"
+        director_id = req.path.split('/directors/').last.split("/movies/").first
+        director = Director.find_by(id: director_id)
+        movie_id = req.path.split('/movies/').last
+        movie = director.movies.find_by(id: movie_id)
+        deleted_movie = director.movies.destroy(movie)
       end
     elsif req.path.match(/directors/)
       if req.env["REQUEST_METHOD"] == "POST"
