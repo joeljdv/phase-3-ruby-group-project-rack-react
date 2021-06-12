@@ -1,52 +1,16 @@
-# Phase 3 Project
+# phase-3-ruby-group-project-rack-react
 
-## Requirements
+This is a backend with a SQlite database of movie directors and their movies. To have access to this backend fork this repo and clone it on your computer. You will see a README file, and a folder called backend, inside this folder you will find an app folder, a db folder, a config folder, a Gemfile, and a Rakefile.
 
-1. Access a Sqlite3 database using Active Record.
-2. You should have a minimum of two models with a one to many relationship.
-3. You should build out a simple **React** frontend to give your user 3 of the 4
-   CRUD abilities for at least one of your resources. For example, build out a
-   todo list. A user should be able to create a new todo, see all todos,
-   update a todo item, and delete a todo. Todos can be grouped into categories,
-   so that a todo has many categories and categories have many todos.
-4. Use good OO design patterns. You should have separate classes for your
-   models.
+In the app folder you will find an application file where we deal with HTTP request and response. You will also find a director and a movie files, with the use of ActiveRecord these two files create the objects that will populate the SQlite database. The director file creates a director and adds it to the directors table and the movie file creates a movie and associates that movie to a director.
 
-## Getting Started
+In the db folder you can find a migrate folder where there are two migrations, one creates the directors table and the other one creates the movies table. You will also the schema file where you can see the schema of both tables.
 
-Clone down this repository. A basic Rack app is located in the `backend` folder.
+In the Gemfile you find all the necessary gems to run this repo.
 
-First, cd into the `backend` folder and run `bundle install` in your backend
-folder to install your gems.
+Once you have cloned this repo, in your terminal run 'bundle install' to install all the gems and then 'shotgun --port== 9292', this will run your server on the port  http://localhost:9292.
 
-The `app/application.rb` file has an example GET route. Replace this route with
-routes for your project!
+The frontend of this repo can be found on https://github.com/joeljdv/ruby-project-frontend. Fork that repo and clone it on your computer and follow the steps on the README file to run it.
 
-**Start your server with:**
 
-```sh
-shotgun --port=9292
-```
 
-> **Note:** This will run your server on port
-> [http://localhost:9292](http://localhost:9292).
-> [shotgun](https://github.com/rtomayko/shotgun) is a ruby gem that will
-> automatically reload your Rack server. You may still need to refresh your
-> browser to see changes.
-
-Your backend and your frontend should be in two different repositories. Create a
-new repository in a separate folder with a React app for your frontend using
-[create-react-app][].
-
-### Fetch Example
-
-Your React app should make fetch requests to your Rack backend! Here's an
-example:
-
-```js
-fetch("http://localhost:9292/test")
-  .then((res) => res.json())
-  .then(console.log);
-```
-
-[create-react-app]: https://create-react-app.dev/docs/getting-started
